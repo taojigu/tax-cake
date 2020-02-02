@@ -8,13 +8,13 @@ class YearSalaryTaxCalculator:
         return
      #计算单月的个税
     def taxOfMonth(self,monthIndex,monthSalary,taxSum,yearSum):
-        assert(monthIndex > 0 and monthIndex < 12 )
+        assert(monthIndex >= 0 and monthIndex < 12 )
         assert(monthSalary > self._monthThreshold)
         inputSum = (monthSalary - self._monthThreshold) * (monthIndex +1)     
         taxDict = pinYearTaxDict(inputSum)
         rate = taxDict['rate']
         deduction = taxDict['deduction']
-        tax = yearSum * rate - deduction
+        tax = inputSum * rate - deduction - taxSum
         return tax
 
     #按照月薪，预估全年的累计数个税
@@ -29,10 +29,16 @@ class YearSalaryTaxCalculator:
         taxSum =0
         while (monthIndex < 12):
             salarySum += monthSalary
-            taxSum += taxOfMonth(monthIndex,monthSalary,taxSum,salarySum)
+            taxSum += self.taxOfMonth(monthIndex,monthSalary,taxSum,salarySum)
+            monthIndex += 1
         return taxSum
+    
+    def yearSalayMain:
+        
+        return
    
 
 cal = YearSalaryTaxCalculator()
-ys = cal.yearSalaryTax(50000)
+ys = cal.yearSalaryTax(25500)
+print('year tax is %.2f' %ys)
 
