@@ -21,7 +21,7 @@ class YearSalaryTaxCalculator:
     def yearSalaryTax(self,monthSalary):
         
         if monthSalary <= self._monthThreshold:
-            raise '十分遗憾，您作为纳税人的荣誉被剥夺了'
+            raise Exception('十分遗憾，您的薪水太低,作为纳税人的荣誉被剥夺了')
             return 0
 
         monthIndex = 0
@@ -33,12 +33,19 @@ class YearSalaryTaxCalculator:
             monthIndex += 1
         return taxSum
     
-    def yearSalayMain:
-        
+    def yearSalayMain(self):
+        try:
+            monthSalary = int(input('请输入您扣除五险一金和个税低折扣后的月薪: '))
+            #cal = YearSalaryTaxCalculator()
+            ys = self.yearSalaryTax(monthSalary)
+            print('按照您现在的薪水，您一年缴纳个税是 %.2f 元' %(ys))
+        except Exception as e:
+            print (e)
         return
    
 
+
 cal = YearSalaryTaxCalculator()
-ys = cal.yearSalaryTax(25500)
-print('year tax is %.2f' %ys)
+cal.yearSalayMain()
+#print('year tax is %.2f' %ys)
 
