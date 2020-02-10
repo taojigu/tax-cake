@@ -29,23 +29,33 @@ class YearSalaryTaxCalculator:
         taxSum =0
         while (monthIndex < 12):
             salarySum += monthSalary
-            taxSum += self.taxOfMonth(monthIndex,monthSalary,taxSum,salarySum)
+            monthTax = self.taxOfMonth(monthIndex,monthSalary,taxSum,salarySum)
+            print('%i 月份缴纳个税 %.2f 元' %(monthIndex+1,monthTax))
+            taxSum += monthTax
             monthIndex += 1
         return taxSum
     
+    def yearSalaryTextInput(self):
+        text = ("请输入您扣除五险一金和个税低折扣后的月薪: "
+        "(例如您税前月薪30000元，五险一金扣除5000元，"
+        "赡养两位老人抵扣2000元，"
+        "第一套房贷利息抵扣1000元，"
+        "您在此应该输入的的金额应该是30000-5000-2000-1000=22000) ")
+        return text
+    
     def yearSalayMain(self):
         try:
-            monthSalary = int(input('请输入您扣除五险一金和个税低折扣后的月薪: '))
+            text = self.yearSalaryTextInput()
+            monthSalary = int(input(text))
             #cal = YearSalaryTaxCalculator()
             ys = self.yearSalaryTax(monthSalary)
             print('按照您现在的薪水，您一年缴纳个税是 %.2f 元' %(ys))
         except Exception as e:
             print (e)
         return
-   
-
 
 cal = YearSalaryTaxCalculator()
 cal.yearSalayMain()
-#print('year tax is %.2f' %ys)
 
+
+   
