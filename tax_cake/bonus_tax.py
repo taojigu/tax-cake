@@ -91,6 +91,12 @@ def taxDict(rate,deduction):
     return { 'rate' : rate, 'deduction' : deduction}
 
 
+def main_bonus_tax():
+    
+    
+    return
+
+
 # 计税月薪= 每个月税前工资 - 五险一金 - 个税抵扣。
 salary = 20000 
 # 绩效年终奖
